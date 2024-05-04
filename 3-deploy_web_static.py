@@ -6,12 +6,10 @@ distributes an archive to the web servers
 execute: fab -f 3-deploy_web_static.py deploy -i ~/.ssh/id_rsa -u ubuntu
 """
 
-from fabric.api import *
-
+from fabric.api import env, local, put, run
 from datetime import datetime
-import os.path
-
-env.hosts = ['52.207.75.151', '18.206.192.139']
+from os.path import exists, isdir
+env.hosts = ['18.206.192.139', '52.207.75.151']
 
 
 def do_pack():
@@ -50,8 +48,7 @@ def do_deploy(archive_path):
 
 def deploy():
     """creates and distributes an archive to the web servers"""
-    file_path = do_pack()
-    if file_path is None:
+    archive_path = do_pack()
+    if archive_path is None:
         return False
-    return do_deploy(file_path)
-
+    return do_deploy(archive_path)
