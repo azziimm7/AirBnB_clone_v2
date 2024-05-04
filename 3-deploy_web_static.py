@@ -6,10 +6,8 @@ distributes an archive to the web servers
 execute: fab -f 3-deploy_web_static.py deploy -i ~/.ssh/id_rsa -u ubuntu
 """
 
-from fabric.api import env
-from fabric.api import put
-from fabric.api import run
-from fabric.api import local
+from fabric.api import *
+
 from datetime import datetime
 import os.path
 
