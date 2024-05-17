@@ -8,9 +8,7 @@ app = Flask(__name__)
 
 @app.route('/', strict_slashes=False)
 def index():
-	"""
-	RETURN HELLO HBNB
-	"""
+	"""RETURN HELLO HBNB"""
 	return 'Hello HBNB!'
 
 
