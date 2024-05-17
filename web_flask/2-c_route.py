@@ -18,6 +18,7 @@ def hbnb():
     """This MEthod  return hnbnb route"""
     return 'HBNB'
 
+
 @app.route('/c/<text>', strict_slashes=False)
 def c_is_fun(text):
     """This function return c is fun + some text"""
