@@ -71,6 +71,6 @@ class FileStorage:
                 cities.append(val)
         return cities
 
-   def close(self):
-       """ A function   deserializing the JSON file to object"""
-       self.reload()
+    def close(self):
+        """ A function   deserializing the JSON file to object"""
+        self.reload()
