@@ -70,3 +70,7 @@ class FileStorage:
             if 'City' in key and val.state_id == state_id:
                 cities.append(val)
         return cities
+
+   def close(self):
+       """ A function   deserializing the JSON file to object"""
+       self.reload()
