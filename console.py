@@ -114,46 +114,39 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
     
-    def do_create(self, arg):
+    def do_create(self, args):
         """ Creates a new instance of a class with given parameters """
-        if not arg:
+        if not args:
             print("** class name missing **")
             return
-        args = arg.split()
-        class_name = args[0]
-        if class_name not in HBNBCommand.classes:
+        args_list = args.split(" ")
+        
+        class_name = args_list[0]
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
-        # Remove class name from args
-        args = args[1:]
-        # Create a dictionary to store the attributes
-        attributes = {}
-        for param in args:
-            # Split the parameter into key and value
-            param_parts = param.split('=')
-            if len(param_parts) != 2:
-                continue
-            key = param_parts[0]
-            value = param_parts[1]
-            # Handle string values
-            if value.startswith('"') and value.endswith('"'):
-                value = value[1:-1].replace('_', ' ')
-            # Handle float values
-            elif '.' in value:
-                try:
-                    value = float(value)
-                except ValueError:
-                    continue
-            # Handle integer values
-            else:
-                try:
-                    value = int(value)
-                except ValueError:
-                    continue
-            # Add the attribute to the dictionary
-            attributes[key] = value
-        # Create a new instance of the class with the attributes
-        new_instance = HBNBCommand.classes[class_name](**attributes)
+        key_value = {}
+        for arg in args_list[1:]:
+           params = arg.split("=")
+           if len(params) == 2:
+              param_value = eval(params[1])
+              
+              if isinstance(param_value, str):
+                  param_value = param_value.replace.replace(
+                            "_", " ").replace('"', '\\"')
+              elif '.' in param_value:
+                  try:
+                      param_value = float(param_value)
+                  except ValueError:
+                      continue
+              else:
+                  try:
+                      param_value = int(param_value)
+                  except ValueError:
+                      continue
+              key_value[params[0]] = param_value
+           
+        new_instance = HBNBCommand.classes[arg_list[0]](**kw)
         new_instance.save()
         print(new_instance.id)
    
