@@ -115,7 +115,8 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Creates a new instance of a class with given parameters """
+        """ Creates a new instance of a class with given parame"""
+         """ Creates a new instance of a class with given parameters """
         if not args:
             print("** class name missing **")
             return
