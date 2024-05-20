@@ -113,43 +113,43 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         """ Overrides the emptyline method of CMD """
         pass
-    
+
     def do_create(self, args):
         """ Creates a new instance of a class with given parameters """
         if not args:
             print("** class name missing **")
             return
         args_list = args.split(" ")
-        
+
         class_name = args_list[0]
         if class_name not in self.classes:
             print("** class doesn't exist **")
             return
         key_value = {}
         for arg in args_list[1:]:
-           params = arg.split("=")
-           if len(params) == 2:
-              param_value = eval(params[1])
-              
-              if isinstance(param_value, str):
-                  param_value = param_value.replace.replace(
+            params = arg.split("=")
+            if len(params) == 2:
+                param_value = eval(params[1])
+
+                if isinstance(param_value, str):
+                    param_value = param_value.replace.replace(
                             "_", " ").replace('"', '\\"')
-              elif '.' in param_value:
-                  try:
-                      param_value = float(param_value)
-                  except ValueError:
-                      continue
-              else:
-                  try:
-                      param_value = int(param_value)
-                  except ValueError:
-                      continue
-              key_value[params[0]] = param_value
-           
+                elif '.' in param_value:
+                    try:
+                        param_value = float(param_value)
+                    except ValueError:
+                        continue
+                else:
+                    try:
+                        param_value = int(param_value)
+                    except ValueError:
+                        continue
+                key_value[params[0]] = param_value
+
         new_instance = HBNBCommand.classes[arg_list[0]](**kw)
         new_instance.save()
         print(new_instance.id)
-   
+
     def help_create(self):
         """ Help information for the create method """
         print("Creates a class of any type")
